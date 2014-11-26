@@ -4,7 +4,7 @@
     Dim alertConfigFilename_string = ""
     Dim outputFilename_string = ""
     Dim eventDate As String = ""
-    Dim raw_metData(0) As String
+    Dim met_data(0) As Array
 
     Private Sub metBuilder_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         OpenFileDialog_inputFile.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*"
@@ -54,8 +54,8 @@
 
                     If met_data_found Then
                         If (currentRow(0) <> "END") Then
-                            raw_metData(raw_metData.Length - 1) = currentRow(0)
-                            ReDim Preserve raw_metData(raw_metData.Length)
+                            met_data(met_data.Length - 1) = currentRow(0).Split(New String() {}, StringSplitOptions.RemoveEmptyEntries)
+                            ReDim Preserve met_data(met_data.Length)
                         End If
                     End If
 
@@ -67,18 +67,14 @@
                         met_data_found = True
                     End If
 
-
                 Catch ex As Exception
 
                 End Try
             End While
         End Using
 
-        ReDim Preserve raw_metData(raw_metData.Length - 2)
 
-
-
-
+        ReDim Preserve met_data(met_data.Length - 2)
 
     End Sub
 
