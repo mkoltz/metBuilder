@@ -53,28 +53,21 @@ Public Class metBuilder
 
         Using fileWriter As New StreamWriter(TextBox_outputFile.Text)
 
-            fileWriter.WriteLine(+vbCrLf)
 
-            fileWriter.WriteLine("""" + TextBox_ExerciseName.Text + """" + vbCrLf)
-            'fileWriter.WriteLine(My.Resources.outputFile_String6 + vbCrLf)
-
-            fileWriter.WriteLine("""" + ComboBox_ForecastSite.Text + """" + vbCrLf)
-            '  fileWriter.WriteLine(My.Resources. + vbCrLf)
-
-            fileWriter.WriteLine("""" + ComboBox_Timezone.Text + """" + vbCrLf)
-            'fileWriter.WriteLine(My.Resources.outputFile_String4 + vbCrLf)
-
-            fileWriter.WriteLine("""" & sunrise_time_string & """" & " #Sunrise Time")
-            fileWriter.WriteLine("""" & sunset_time_string & """" & " #Sunset Time" & vbCrLf)
-            'fileWriter.WriteLine(My.Resources.outputFile_String5 + vbCrLf)
+            fileWriter.WriteLine("#Exercise Name" & vbCrLf & """" + TextBox_ExerciseName.Text + """" + vbCrLf)
+            fileWriter.WriteLine("#Forecast Site" & vbCrLf & """" + ComboBox_ForecastSite.Text + """" + vbCrLf)
+            fileWriter.WriteLine("#Time zone" & vbCrLf & """" + ComboBox_Timezone.Text + """" + vbCrLf)
+            fileWriter.WriteLine("#Sunset and Sunrise Time" & vbCrLf & """" & sunrise_time_string & """")
+            fileWriter.WriteLine("""" & sunset_time_string & """" & vbCrLf)
+            fileWriter.WriteLine("#Alert Configuration" & vbCrLf)
 
             For Each alert As Array In alert_config
 
-                fileWriter.WriteLine("#" & vbCrLf & "#" & vbCrLf & """" & alert(0) & """" & vbCrLf & """" & alert(1) & """" & vbCrLf & """" & alert(2) & """")
+                fileWriter.WriteLine("""" & alert(0) & """" & vbCrLf & """" & alert(1) & """" & vbCrLf & """" & alert(2) & """" & vbCrLf & vbCrLf)
 
             Next
 
-            'fileWriter.WriteLine(My.Resources.outputFile_String6)
+
 
         End Using
 
