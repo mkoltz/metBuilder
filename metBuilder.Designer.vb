@@ -56,6 +56,7 @@ Partial Class metBuilder
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
         CType(Me.NumericUpDown_DaysBefore, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_DaysAfter, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown_VariabilityTemp, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,6 +70,7 @@ Partial Class metBuilder
         Me.TextBox_inputFile.Name = "TextBox_inputFile"
         Me.TextBox_inputFile.Size = New System.Drawing.Size(383, 20)
         Me.TextBox_inputFile.TabIndex = 8
+        Me.TextBox_inputFile.Text = "E:\DETech\MetUploader\TestInputMetFile(2014 BGCA Nov CAIRA)(v1).txt"
         '
         'Label_inputFile
         '
@@ -94,6 +96,7 @@ Partial Class metBuilder
         Me.TextBox_ExerciseName.Name = "TextBox_ExerciseName"
         Me.TextBox_ExerciseName.Size = New System.Drawing.Size(464, 20)
         Me.TextBox_ExerciseName.TabIndex = 1
+        Me.TextBox_ExerciseName.Text = "test"
         '
         'Label_ExerciseName
         '
@@ -121,6 +124,7 @@ Partial Class metBuilder
         Me.ComboBox_ForecastSite.Name = "ComboBox_ForecastSite"
         Me.ComboBox_ForecastSite.Size = New System.Drawing.Size(464, 21)
         Me.ComboBox_ForecastSite.TabIndex = 2
+        Me.ComboBox_ForecastSite.Text = "Richmond, KY"
         '
         'Label_timezone
         '
@@ -139,41 +143,42 @@ Partial Class metBuilder
         Me.ComboBox_Timezone.Name = "ComboBox_Timezone"
         Me.ComboBox_Timezone.Size = New System.Drawing.Size(464, 21)
         Me.ComboBox_Timezone.TabIndex = 3
+        Me.ComboBox_Timezone.Text = "EST"
         '
         'Label_sunrise
         '
         Me.Label_sunrise.AutoSize = True
-        Me.Label_sunrise.Location = New System.Drawing.Point(55, 166)
+        Me.Label_sunrise.Location = New System.Drawing.Point(55, 159)
         Me.Label_sunrise.Name = "Label_sunrise"
-        Me.Label_sunrise.Size = New System.Drawing.Size(42, 13)
+        Me.Label_sunrise.Size = New System.Drawing.Size(46, 13)
         Me.Label_sunrise.TabIndex = 10
-        Me.Label_sunrise.Text = "Sunrise"
+        Me.Label_sunrise.Text = "Sunrise*"
         '
         'Label_sunset
         '
         Me.Label_sunset.AutoSize = True
-        Me.Label_sunset.Location = New System.Drawing.Point(57, 200)
+        Me.Label_sunset.Location = New System.Drawing.Point(57, 188)
         Me.Label_sunset.Name = "Label_sunset"
-        Me.Label_sunset.Size = New System.Drawing.Size(40, 13)
+        Me.Label_sunset.Size = New System.Drawing.Size(44, 13)
         Me.Label_sunset.TabIndex = 11
-        Me.Label_sunset.Text = "Sunset"
+        Me.Label_sunset.Text = "Sunset*"
         '
         'DateTimePicker_Sunrise
         '
-        Me.DateTimePicker_Sunrise.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.DateTimePicker_Sunrise.Location = New System.Drawing.Point(106, 164)
+        Me.DateTimePicker_Sunrise.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.DateTimePicker_Sunrise.Location = New System.Drawing.Point(106, 157)
         Me.DateTimePicker_Sunrise.Name = "DateTimePicker_Sunrise"
         Me.DateTimePicker_Sunrise.ShowUpDown = True
-        Me.DateTimePicker_Sunrise.Size = New System.Drawing.Size(105, 20)
+        Me.DateTimePicker_Sunrise.Size = New System.Drawing.Size(63, 20)
         Me.DateTimePicker_Sunrise.TabIndex = 4
         '
         'DateTimePicker_Sunset
         '
-        Me.DateTimePicker_Sunset.Format = System.Windows.Forms.DateTimePickerFormat.Time
-        Me.DateTimePicker_Sunset.Location = New System.Drawing.Point(106, 196)
+        Me.DateTimePicker_Sunset.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.DateTimePicker_Sunset.Location = New System.Drawing.Point(106, 184)
         Me.DateTimePicker_Sunset.Name = "DateTimePicker_Sunset"
         Me.DateTimePicker_Sunset.ShowUpDown = True
-        Me.DateTimePicker_Sunset.Size = New System.Drawing.Size(105, 20)
+        Me.DateTimePicker_Sunset.Size = New System.Drawing.Size(63, 20)
         Me.DateTimePicker_Sunset.TabIndex = 5
         '
         'Button_AlertConfig
@@ -200,6 +205,7 @@ Partial Class metBuilder
         Me.TextBox_alertConfig.Name = "TextBox_alertConfig"
         Me.TextBox_alertConfig.Size = New System.Drawing.Size(383, 20)
         Me.TextBox_alertConfig.TabIndex = 6
+        Me.TextBox_alertConfig.Text = "E:\DETech\MetUploader\alert_Config.csv"
         '
         'TextBox_outputFile
         '
@@ -207,6 +213,7 @@ Partial Class metBuilder
         Me.TextBox_outputFile.Name = "TextBox_outputFile"
         Me.TextBox_outputFile.Size = New System.Drawing.Size(383, 20)
         Me.TextBox_outputFile.TabIndex = 15
+        Me.TextBox_outputFile.Text = "E:\DETech\MetUploader\test.txt"
         '
         'Button_outputFile
         '
@@ -332,11 +339,21 @@ Partial Class metBuilder
         Me.Label6.TabIndex = 26
         Me.Label6.Text = "Wind Direction (Deg)"
         '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(105, 214)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(131, 13)
+        Me.Label7.TabIndex = 27
+        Me.Label7.Text = "*Uses 24 Hour Local Time"
+        '
         'metBuilder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(585, 523)
+        Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
@@ -413,5 +430,6 @@ Partial Class metBuilder
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents Label7 As System.Windows.Forms.Label
 
 End Class

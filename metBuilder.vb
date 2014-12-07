@@ -14,8 +14,8 @@ Public Class metBuilder
         OpenFileDialog_inputFile.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*"
         OpenFileDialog_AlertConfig.Filter = "CSV Files (*.csv)|*.csv|All Files (*.*)|*.*"
         SaveFileDialog_outputFile.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*"
-        DateTimePicker_sunrise.CustomFormat = dateTimeFormat
-        DateTimePicker_sunset.CustomFormat = dateTimeFormat
+        DateTimePicker_Sunrise.CustomFormat = dateTimeFormat
+        DateTimePicker_Sunset.CustomFormat = dateTimeFormat
     End Sub
 
     Private Sub Button_inputFile_Click(sender As Object, e As EventArgs) Handles Button_inputFile.Click
@@ -39,7 +39,7 @@ Public Class metBuilder
     Private Sub Button_Run_Click(sender As Object, e As EventArgs) Handles Button_Run.Click
         analyze_inputFile(TextBox_inputFile.Text)
         createAlertArray()
-        'read alert config file and biuld an output string
+        createMetArray()
         'Take the input array and build an output array
         writeOutputFile()
 
@@ -53,7 +53,7 @@ Public Class metBuilder
 
         Using fileWriter As New StreamWriter(TextBox_outputFile.Text)
 
-
+            fileWriter.WriteLine("#Version number of this files format" & vbCrLf & "1" & vbCrLf)
             fileWriter.WriteLine("#Exercise Name" & vbCrLf & """" + TextBox_ExerciseName.Text + """" + vbCrLf)
             fileWriter.WriteLine("#Forecast Site" & vbCrLf & """" + ComboBox_ForecastSite.Text + """" + vbCrLf)
             fileWriter.WriteLine("#Time zone" & vbCrLf & """" + ComboBox_Timezone.Text + """" + vbCrLf)
@@ -66,6 +66,8 @@ Public Class metBuilder
                 fileWriter.WriteLine("""" & alert(0) & """" & vbCrLf & """" & alert(1) & """" & vbCrLf & """" & alert(2) & """" & vbCrLf & vbCrLf)
 
             Next
+
+            fileWriter.WriteLine("END # End of the alerts list")
 
 
 
@@ -167,5 +169,61 @@ Public Class metBuilder
         ReDim Preserve alert_config(alert_config.Length - 2)
 
     End Sub
+
+
+    Public Sub createMetArray()
+        'loop through all of the days and do different actions on the event day than on the preceeding and following days.
+
+        Dim startTime As Byte = 6
+        Dim timeString As String = "6:00am"
+
+        For c As Integer = (NumericUpDown_DaysBefore.Value * -1) To (NumericUpDown_DaysAfter.Value)
+
+            If c = 0 Then
+                'build excercise day met
+                Console.WriteLine("It's the event Data: " & eventDate)
+            Else
+                'build before and after excercise day met
+                Console.WriteLine("The Date is:" & DateAdd(DateInterval.Day, c, CDate(eventDate)))
+
+                For x = 0 To 24
+                    Console.WriteLine("The time is: " & timeString)
+                    startTime = addHours(startTime, 3, timeString)
+                Next
+
+
+            End If
+
+        Next
+
+    End Sub
+
+    Public Function addHours(ByRef startHour As Byte, ByRef increment As Byte, ByRef timeString As String) As Byte
+        Dim outputHour As Byte = 0
+        Dim hourClassifier As String = "am"
+        outputHour = startHour + increment
+        Dim stringHour As String
+
+        If (outputHour >= 24) Then
+            outputHour = outputHour - 24
+        End If
+
+        If (outputHour >= 12) Then
+            hourClassifier = "pm"
+        End If
+
+        If (outputHour > 12) Then
+            stringHour = CStr(outputHour - 12)
+        ElseIf (outputHour = 0) Then
+            stringHour = 12
+        Else
+            stringHour = CStr(outputHour)
+        End If
+
+
+        timeString = stringHour & ":00" & hourClassifier
+
+        Return outputHour
+    End Function
 
 End Class
