@@ -9,6 +9,7 @@ Public Class metBuilder
     Dim met_data(0) As Array
     Dim alert_config(0) As Array
     Dim dateTimeFormat As String = "HH:mm"
+    Dim output_met_array(0) As Array
 
     Private Sub metBuilder_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         OpenFileDialog_inputFile.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*"
@@ -176,21 +177,58 @@ Public Class metBuilder
 
         Dim startTime As Byte = 6
         Dim timeString As String = "6:00am"
+        Dim nextDay As Boolean = False
+        Dim averageWindspeed(1), averageWindDirection(1), averageTemp(1) As Integer
+        Dim numMetRows As Byte = 0
+        Dim row As Byte = 0
+
+        For Each raw_met_row As String() In met_data
+
+            averageWindspeed(0) += raw_met_row(3)
+            averageWindDirection(0) += raw_met_row(4)
+            averageTemp(0) += raw_met_row(2)
+
+            numMetRows += 1
+        Next
+
+        averageTemp(0) = (Math.Floor(averageTemp(0) / numMetRows)) * (9 / 5) + 32
+        averageWindDirection(0) = Math.Floor(averageWindDirection(0) / numMetRows)
+        averageWindspeed(0) = Math.Floor(averageWindspeed(0) / numMetRows * 2.23694)
+
+        Console.WriteLine(averageTemp(0))
+        Console.WriteLine(averageWindDirection(0))
+        Console.WriteLine(averageWindspeed(0))
+
 
         For c As Integer = (NumericUpDown_DaysBefore.Value * -1) To (NumericUpDown_DaysAfter.Value)
-
             If c = 0 Then
                 'build excercise day met
-                Console.WriteLine("It's the event Data: " & eventDate)
+                While Not nextDay
+                    Console.WriteLine(DateAdd(DateInterval.Day, c, CDate(eventDate)) & " " & timeString)
+                    startTime = addHours(startTime, 1, timeString, nextDay)
+                End While
+                nextDay = False
+
             Else
                 'build before and after excercise day met
-                Console.WriteLine("The Date is:" & DateAdd(DateInterval.Day, c, CDate(eventDate)))
+                While Not nextDay
 
-                For x = 0 To 24
-                    Console.WriteLine("The time is: " & timeString)
-                    startTime = addHours(startTime, 3, timeString)
-                Next
+                    averageTemp(1) = averageTemp(0) - NumericUpDown_VariabilityTemp.Value + Rnd() * (NumericUpDown_VariabilityTemp.Value * 2)
+                    averageWindDirection(1) = averageWindDirection(0) - NumericUpDown_VariabilityWindDirection.Value + Rnd() * (NumericUpDown_VariabilityWindDirection.Value * 2)
+                    averageWindspeed(1) = averageWindspeed(0) - NumericUpDown_VariabilityWindSpeed.Value + Rnd() * (NumericUpDown_VariabilityWindSpeed.Value * 2)
+                    output_met_array(row) = {DateAdd(DateInterval.Day, c, CDate(eventDate)), timeString, "MostlyCloudy", averageTemp(1), averageWindDirection(1), averageWindspeed(1), "No Alert"}
+                    ReDim Preserve output_met_array(output_met_array.Length)
+                    startTime = addHours(startTime, 3, timeString, nextDay)
 
+
+                    For Each value As String In output_met_array(row)
+                        Console.Write(value & " ")
+                    Next
+                    row += 1
+                    Console.WriteLine()
+                End While
+
+                nextDay = False
 
             End If
 
@@ -198,7 +236,17 @@ Public Class metBuilder
 
     End Sub
 
-    Public Function addHours(ByRef startHour As Byte, ByRef increment As Byte, ByRef timeString As String) As Byte
+    ''' <summary>
+    ''' Used to add a specified amount of hours to a byte variable and create a time string based on that hour.  Also turns on the next day switch and handles AM PM shifts
+    ''' </summary>
+    ''' <param name="startHour">Input start hour onto which the increment will be added</param>
+    ''' <param name="increment">Number of hours to add</param>
+    ''' <param name="timeString">Time String the function will modify</param>
+    ''' <param name="nextDay">Boolean to switch to the next day</param>
+    ''' <returns>outputHour byte</returns>
+    ''' <remarks></remarks>
+    Public Function addHours(ByRef startHour As Byte, ByRef increment As Byte, ByRef timeString As String, ByRef nextDay As Boolean) As Byte
+
         Dim outputHour As Byte = 0
         Dim hourClassifier As String = "am"
         outputHour = startHour + increment
@@ -206,6 +254,7 @@ Public Class metBuilder
 
         If (outputHour >= 24) Then
             outputHour = outputHour - 24
+            nextDay = True
         End If
 
         If (outputHour >= 12) Then
