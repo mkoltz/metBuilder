@@ -40,7 +40,6 @@ Public Class metBuilder
     Private Sub Button_Run_Click(sender As Object, e As EventArgs) Handles Button_Run.Click
         analyze_inputFile(TextBox_inputFile.Text)
         createAlertArray()
-        createMetArray()
         'Take the input array and build an output array
         writeOutputFile()
 
@@ -69,8 +68,11 @@ Public Class metBuilder
             Next
 
             fileWriter.WriteLine("END # End of the alerts list")
+            fileWriter.WriteLine()
 
-
+            writeMetData(fileWriter)
+            fileWriter.WriteLine()
+            fileWriter.WriteLine("END  #  End of the met conditions table")
 
         End Using
 
@@ -171,16 +173,26 @@ Public Class metBuilder
 
     End Sub
 
+    Public Function getHour(ByVal index As Integer) As Byte
+        Dim hour_string As String = met_data(index)(0)
+        Dim hour_stringArray() As String = hour_string.Split(":")
+        Dim hour As Byte = CByte(hour_stringArray(0))
+        Return hour
+    End Function
 
-    Public Sub createMetArray()
+
+    Public Sub writeMetData(ByRef writer As System.IO.StreamWriter)
         'loop through all of the days and do different actions on the event day than on the preceeding and following days.
-
+        Dim cloudCover As String = "PartlyCloudy"
         Dim startTime As Byte = 6
         Dim timeString As String = "6:00am"
         Dim nextDay As Boolean = False
-        Dim averageWindspeed(1), averageWindDirection(1), averageTemp(1) As Integer
+        Dim averageWindspeed(3), averageWindDirection(3), averageTemp(3) As Integer
         Dim numMetRows As Byte = 0
         Dim row As Byte = 0
+
+        Dim firstHour As Byte = getHour(0)
+        Dim lastHour As Byte = getHour(met_data.Length - 1)
 
         For Each raw_met_row As String() In met_data
 
@@ -195,37 +207,95 @@ Public Class metBuilder
         averageWindDirection(0) = Math.Floor(averageWindDirection(0) / numMetRows)
         averageWindspeed(0) = Math.Floor(averageWindspeed(0) / numMetRows * 2.23694)
 
-        Console.WriteLine(averageTemp(0))
-        Console.WriteLine(averageWindDirection(0))
-        Console.WriteLine(averageWindspeed(0))
-
-
         For c As Integer = (NumericUpDown_DaysBefore.Value * -1) To (NumericUpDown_DaysAfter.Value)
             If c = 0 Then
+                writer.WriteLine("#Exercise Day")
+                Dim tempCounter As Byte = 0
                 'build excercise day met
                 While Not nextDay
-                    Console.WriteLine(DateAdd(DateInterval.Day, c, CDate(eventDate)) & " " & timeString)
+
+
+                    If (startTime >= firstHour And startTime < lastHour) Then
+                        Dim averageCounter As Byte = 0
+                        averageTemp(2) = 0
+                        averageWindDirection(2) = 0
+                        averageWindspeed(2) = 0
+
+                        Select Case met_data(tempCounter)(1)
+                            Case "A"
+                                cloudCover = "Clear"
+                            Case "B"
+                                cloudCover = "Clear"
+                            Case "C"
+                                cloudCover = "PartlyCloudy"
+                            Case "D"
+                                cloudCover = "MostlyCloudy"
+                            Case "E"
+                                cloudCover = "MostlyCloudy"
+                            Case "F"
+                                cloudCover = "Cloudy"
+                        End Select
+
+                        While getHour(tempCounter) = startTime
+                            averageTemp(2) += met_data(tempCounter)(2)
+                            averageWindDirection(2) += met_data(tempCounter)(4)
+                            averageWindspeed(2) += met_data(tempCounter)(3)
+                            averageCounter += 1
+                            tempCounter += 1
+                        End While
+
+                        averageTemp(2) = (Math.Floor(averageTemp(2) / averageCounter)) * (9 / 5) + 32
+                        averageWindDirection(2) = Math.Floor(averageWindDirection(2) / averageCounter)
+                        averageWindspeed(2) = Math.Floor(averageWindspeed(2) / averageCounter * 2.23694)
+
+                        output_met_array(row) = {"""" & DateAdd(DateInterval.Day, c, CDate(eventDate)), timeString & """", cloudCover, averageTemp(2), averageWindDirection(2), averageWindspeed(2), """" & "No Alert" & """"}
+                        ReDim Preserve output_met_array(output_met_array.Length)
+
+
+                        For Each value As String In output_met_array(row)
+                            writer.Write(value & " ")
+                        Next
+                        row += 1
+                        writer.WriteLine()
+
+
+                    Else
+                        averageTemp(1) = getRandom(averageTemp(0), NumericUpDown_VariabilityTemp.Value)
+                        averageWindDirection(1) = getRandom(averageWindDirection(0), NumericUpDown_VariabilityWindDirection.Value)
+                        averageWindspeed(1) = getRandom(averageWindspeed(0), NumericUpDown_VariabilityWindSpeed.Value)
+                        output_met_array(row) = {"""" & DateAdd(DateInterval.Day, c, CDate(eventDate)), timeString & """", cloudCover, averageTemp(1), averageWindDirection(1), averageWindspeed(1), """" & "No Alert" & """"}
+                        ReDim Preserve output_met_array(output_met_array.Length)
+
+
+                        For Each value As String In output_met_array(row)
+                            writer.Write(value & " ")
+                        Next
+                        row += 1
+                        writer.WriteLine()
+
+                    End If
+
                     startTime = addHours(startTime, 1, timeString, nextDay)
                 End While
                 nextDay = False
 
             Else
                 'build before and after excercise day met
+                writer.WriteLine("#Exercise Day " & c)
                 While Not nextDay
-
-                    averageTemp(1) = averageTemp(0) - NumericUpDown_VariabilityTemp.Value + Rnd() * (NumericUpDown_VariabilityTemp.Value * 2)
-                    averageWindDirection(1) = averageWindDirection(0) - NumericUpDown_VariabilityWindDirection.Value + Rnd() * (NumericUpDown_VariabilityWindDirection.Value * 2)
-                    averageWindspeed(1) = averageWindspeed(0) - NumericUpDown_VariabilityWindSpeed.Value + Rnd() * (NumericUpDown_VariabilityWindSpeed.Value * 2)
-                    output_met_array(row) = {DateAdd(DateInterval.Day, c, CDate(eventDate)), timeString, "MostlyCloudy", averageTemp(1), averageWindDirection(1), averageWindspeed(1), "No Alert"}
+                    averageTemp(1) = getRandom(averageTemp(0), NumericUpDown_VariabilityTemp.Value)
+                    averageWindDirection(1) = getRandom(averageWindDirection(0), NumericUpDown_VariabilityWindDirection.Value)
+                    averageWindspeed(1) = getRandom(averageWindspeed(0), NumericUpDown_VariabilityWindSpeed.Value)
+                    output_met_array(row) = {"""" & DateAdd(DateInterval.Day, c, CDate(eventDate)), timeString & """", cloudCover, averageTemp(1), averageWindDirection(1), averageWindspeed(1), """" & "No Alert" & """"}
                     ReDim Preserve output_met_array(output_met_array.Length)
                     startTime = addHours(startTime, 3, timeString, nextDay)
 
 
                     For Each value As String In output_met_array(row)
-                        Console.Write(value & " ")
+                        writer.Write(value & " ")
                     Next
                     row += 1
-                    Console.WriteLine()
+                    writer.WriteLine()
                 End While
 
                 nextDay = False
@@ -236,15 +306,7 @@ Public Class metBuilder
 
     End Sub
 
-    ''' <summary>
-    ''' Used to add a specified amount of hours to a byte variable and create a time string based on that hour.  Also turns on the next day switch and handles AM PM shifts
-    ''' </summary>
-    ''' <param name="startHour">Input start hour onto which the increment will be added</param>
-    ''' <param name="increment">Number of hours to add</param>
-    ''' <param name="timeString">Time String the function will modify</param>
-    ''' <param name="nextDay">Boolean to switch to the next day</param>
-    ''' <returns>outputHour byte</returns>
-    ''' <remarks></remarks>
+
     Public Function addHours(ByRef startHour As Byte, ByRef increment As Byte, ByRef timeString As String, ByRef nextDay As Boolean) As Byte
 
         Dim outputHour As Byte = 0
@@ -275,4 +337,13 @@ Public Class metBuilder
         Return outputHour
     End Function
 
+
+    Public Function getRandom(ByVal input As Integer, ByRef variability As Integer) As Integer
+        Dim output As Integer
+        output = input - variability + Rnd() * (variability * 2)
+        Return output
+    End Function
+
 End Class
+
+
