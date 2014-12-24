@@ -260,6 +260,8 @@ Public Class metBuilder
 
 
                     Else
+
+                        cloudCover = "PartlyCloudy"
                         averageTemp(1) = getRandom(averageTemp(0), NumericUpDown_VariabilityTemp.Value)
                         averageWindDirection(1) = getRandom(averageWindDirection(0), NumericUpDown_VariabilityWindDirection.Value)
                         averageWindspeed(1) = getRandom(averageWindspeed(0), NumericUpDown_VariabilityWindSpeed.Value)
