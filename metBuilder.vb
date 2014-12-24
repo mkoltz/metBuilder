@@ -8,6 +8,7 @@ Public Class metBuilder
     Dim eventDate As String = ""
     Dim met_data(0) As Array
     Dim alert_config(0) As Array
+    Dim alert_string As String = ""
     Dim dateTimeFormat As String = "HH:mm"
     Dim output_met_array(0) As Array
 
@@ -25,10 +26,10 @@ Public Class metBuilder
         TextBox_inputFile.Text = inputFilename_string
     End Sub
 
-    Private Sub Button_AlertConfig_Click(sender As Object, e As EventArgs) Handles Button_AlertConfig.Click
+    Private Sub Button_AlertConfig_Click(sender As Object, e As EventArgs)
         OpenFileDialog_AlertConfig.ShowDialog()
         alertConfigFilename_string = OpenFileDialog_AlertConfig.FileName
-        TextBox_alertConfig.Text = alertConfigFilename_string
+        'TextBox_alertConfig.Text = alertConfigFilename_string
     End Sub
 
     Private Sub Button_outputFile_Click(sender As Object, e As EventArgs) Handles Button_outputFile.Click
@@ -39,7 +40,14 @@ Public Class metBuilder
 
     Private Sub Button_Run_Click(sender As Object, e As EventArgs) Handles Button_Run.Click
         analyze_inputFile(TextBox_inputFile.Text)
-        createAlertArray()
+        'createAlertArray()
+
+        If (ComboBox_ForecastSite.Text = "Richmond, KY") Then
+            alert_string = """" & "no alert" & """" & vbCrLf & """" & """" & vbCrLf & """" & "BGCA11_normal.png" & """" & vbCrLf
+        Else
+            alert_string = """" & "no alert" & """" & vbCrLf & """" & """" & vbCrLf & """" & "PCD10_normal.png" & """" & vbCrLf
+        End If
+
         'Take the input array and build an output array
         writeOutputFile()
 
@@ -61,11 +69,12 @@ Public Class metBuilder
             fileWriter.WriteLine("""" & sunset_time_string & """" & vbCrLf)
             fileWriter.WriteLine("#Alert Configuration" & vbCrLf)
 
-            For Each alert As Array In alert_config
+            'For Each alert As Array In alert_config
 
-                fileWriter.WriteLine("""" & alert(0) & """" & vbCrLf & """" & alert(1) & """" & vbCrLf & """" & alert(2) & """" & vbCrLf & vbCrLf)
+            '    fileWriter.WriteLine("""" & alert(0) & """" & vbCrLf & """" & alert(1) & """" & vbCrLf & """" & alert(2) & """" & vbCrLf & vbCrLf)
 
-            Next
+            'Next
+            fileWriter.WriteLine(alert_string)
 
             fileWriter.WriteLine("END # End of the alerts list")
             fileWriter.WriteLine()
@@ -145,33 +154,33 @@ Public Class metBuilder
 
     End Sub
 
-    Public Sub createAlertArray()
+    'Public Sub createAlertArray()
 
-        Using FileReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(TextBox_alertConfig.Text)
+    '    Using FileReader As New Microsoft.VisualBasic.FileIO.TextFieldParser(TextBox_alertConfig.Text)
 
-            FileReader.TextFieldType = Microsoft.VisualBasic.FileIO.FieldType.Delimited
-            FileReader.SetDelimiters(",")
+    '        FileReader.TextFieldType = Microsoft.VisualBasic.FileIO.FieldType.Delimited
+    '        FileReader.SetDelimiters(",")
 
-            Dim currentRow As String()
-            While Not FileReader.EndOfData
-                Try
-                    currentRow = FileReader.ReadFields()
+    '        Dim currentRow As String()
+    '        While Not FileReader.EndOfData
+    '            Try
+    '                currentRow = FileReader.ReadFields()
 
-                    alert_config(alert_config.Length - 1) = currentRow
-                    ReDim Preserve alert_config(alert_config.Length)
+    '                alert_config(alert_config.Length - 1) = currentRow
+    '                ReDim Preserve alert_config(alert_config.Length)
 
-                Catch ex As Exception
+    '            Catch ex As Exception
 
-                End Try
+    '            End Try
 
-            End While
+    '        End While
 
-        End Using
+    '    End Using
 
 
-        ReDim Preserve alert_config(alert_config.Length - 2)
+    '    ReDim Preserve alert_config(alert_config.Length - 2)
 
-    End Sub
+    'End Sub
 
     Public Function getHour(ByVal index As Integer) As Byte
         Dim hour_string As String = met_data(index)(0)

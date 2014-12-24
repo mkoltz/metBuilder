@@ -36,9 +36,6 @@ Partial Class metBuilder
         Me.Label_sunset = New System.Windows.Forms.Label()
         Me.DateTimePicker_Sunrise = New System.Windows.Forms.DateTimePicker()
         Me.DateTimePicker_Sunset = New System.Windows.Forms.DateTimePicker()
-        Me.Button_AlertConfig = New System.Windows.Forms.Button()
-        Me.Label_alertConfig = New System.Windows.Forms.Label()
-        Me.TextBox_alertConfig = New System.Windows.Forms.TextBox()
         Me.OpenFileDialog_AlertConfig = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog_outputFile = New System.Windows.Forms.SaveFileDialog()
         Me.TextBox_outputFile = New System.Windows.Forms.TextBox()
@@ -66,16 +63,15 @@ Partial Class metBuilder
         '
         'TextBox_inputFile
         '
-        Me.TextBox_inputFile.Location = New System.Drawing.Point(106, 273)
+        Me.TextBox_inputFile.Location = New System.Drawing.Point(104, 31)
         Me.TextBox_inputFile.Name = "TextBox_inputFile"
         Me.TextBox_inputFile.Size = New System.Drawing.Size(383, 20)
-        Me.TextBox_inputFile.TabIndex = 8
-        Me.TextBox_inputFile.Text = "E:\DETech\MetUploader\TestInputMetFile(2014 BGCA Nov CAIRA)(v1).txt"
+        Me.TextBox_inputFile.TabIndex = 1
         '
         'Label_inputFile
         '
         Me.Label_inputFile.AutoSize = True
-        Me.Label_inputFile.Location = New System.Drawing.Point(47, 277)
+        Me.Label_inputFile.Location = New System.Drawing.Point(45, 34)
         Me.Label_inputFile.Name = "Label_inputFile"
         Me.Label_inputFile.Size = New System.Drawing.Size(50, 13)
         Me.Label_inputFile.TabIndex = 1
@@ -83,25 +79,24 @@ Partial Class metBuilder
         '
         'Button_inputFile
         '
-        Me.Button_inputFile.Location = New System.Drawing.Point(495, 272)
+        Me.Button_inputFile.Location = New System.Drawing.Point(493, 30)
         Me.Button_inputFile.Name = "Button_inputFile"
         Me.Button_inputFile.Size = New System.Drawing.Size(75, 23)
-        Me.Button_inputFile.TabIndex = 9
+        Me.Button_inputFile.TabIndex = 2
         Me.Button_inputFile.Text = "Browse"
         Me.Button_inputFile.UseVisualStyleBackColor = True
         '
         'TextBox_ExerciseName
         '
-        Me.TextBox_ExerciseName.Location = New System.Drawing.Point(106, 32)
+        Me.TextBox_ExerciseName.Location = New System.Drawing.Point(106, 75)
         Me.TextBox_ExerciseName.Name = "TextBox_ExerciseName"
         Me.TextBox_ExerciseName.Size = New System.Drawing.Size(464, 20)
-        Me.TextBox_ExerciseName.TabIndex = 1
-        Me.TextBox_ExerciseName.Text = "test"
+        Me.TextBox_ExerciseName.TabIndex = 3
         '
         'Label_ExerciseName
         '
         Me.Label_ExerciseName.AutoSize = True
-        Me.Label_ExerciseName.Location = New System.Drawing.Point(19, 35)
+        Me.Label_ExerciseName.Location = New System.Drawing.Point(19, 78)
         Me.Label_ExerciseName.Name = "Label_ExerciseName"
         Me.Label_ExerciseName.Size = New System.Drawing.Size(78, 13)
         Me.Label_ExerciseName.TabIndex = 4
@@ -110,7 +105,7 @@ Partial Class metBuilder
         'Label_ForecastSite
         '
         Me.Label_ForecastSite.AutoSize = True
-        Me.Label_ForecastSite.Location = New System.Drawing.Point(28, 78)
+        Me.Label_ForecastSite.Location = New System.Drawing.Point(28, 120)
         Me.Label_ForecastSite.Name = "Label_ForecastSite"
         Me.Label_ForecastSite.Size = New System.Drawing.Size(69, 13)
         Me.Label_ForecastSite.TabIndex = 6
@@ -119,17 +114,17 @@ Partial Class metBuilder
         'ComboBox_ForecastSite
         '
         Me.ComboBox_ForecastSite.FormattingEnabled = True
-        Me.ComboBox_ForecastSite.Items.AddRange(New Object() {"Richmond, KY"})
-        Me.ComboBox_ForecastSite.Location = New System.Drawing.Point(106, 73)
+        Me.ComboBox_ForecastSite.Items.AddRange(New Object() {"Richmond, KY", "Pueblo, CO"})
+        Me.ComboBox_ForecastSite.Location = New System.Drawing.Point(106, 116)
         Me.ComboBox_ForecastSite.Name = "ComboBox_ForecastSite"
         Me.ComboBox_ForecastSite.Size = New System.Drawing.Size(464, 21)
-        Me.ComboBox_ForecastSite.TabIndex = 2
+        Me.ComboBox_ForecastSite.TabIndex = 4
         Me.ComboBox_ForecastSite.Text = "Richmond, KY"
         '
         'Label_timezone
         '
         Me.Label_timezone.AutoSize = True
-        Me.Label_timezone.Location = New System.Drawing.Point(44, 125)
+        Me.Label_timezone.Location = New System.Drawing.Point(44, 166)
         Me.Label_timezone.Name = "Label_timezone"
         Me.Label_timezone.Size = New System.Drawing.Size(53, 13)
         Me.Label_timezone.TabIndex = 8
@@ -139,16 +134,16 @@ Partial Class metBuilder
         '
         Me.ComboBox_Timezone.FormattingEnabled = True
         Me.ComboBox_Timezone.Items.AddRange(New Object() {"EST", "CST", "MST", "PST", "EDT", "CDT", "MDT", "PDT"})
-        Me.ComboBox_Timezone.Location = New System.Drawing.Point(106, 120)
+        Me.ComboBox_Timezone.Location = New System.Drawing.Point(106, 163)
         Me.ComboBox_Timezone.Name = "ComboBox_Timezone"
         Me.ComboBox_Timezone.Size = New System.Drawing.Size(464, 21)
-        Me.ComboBox_Timezone.TabIndex = 3
+        Me.ComboBox_Timezone.TabIndex = 5
         Me.ComboBox_Timezone.Text = "EST"
         '
         'Label_sunrise
         '
         Me.Label_sunrise.AutoSize = True
-        Me.Label_sunrise.Location = New System.Drawing.Point(55, 159)
+        Me.Label_sunrise.Location = New System.Drawing.Point(55, 213)
         Me.Label_sunrise.Name = "Label_sunrise"
         Me.Label_sunrise.Size = New System.Drawing.Size(46, 13)
         Me.Label_sunrise.TabIndex = 10
@@ -157,7 +152,7 @@ Partial Class metBuilder
         'Label_sunset
         '
         Me.Label_sunset.AutoSize = True
-        Me.Label_sunset.Location = New System.Drawing.Point(57, 188)
+        Me.Label_sunset.Location = New System.Drawing.Point(57, 242)
         Me.Label_sunset.Name = "Label_sunset"
         Me.Label_sunset.Size = New System.Drawing.Size(44, 13)
         Me.Label_sunset.TabIndex = 11
@@ -166,61 +161,34 @@ Partial Class metBuilder
         'DateTimePicker_Sunrise
         '
         Me.DateTimePicker_Sunrise.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DateTimePicker_Sunrise.Location = New System.Drawing.Point(106, 157)
+        Me.DateTimePicker_Sunrise.Location = New System.Drawing.Point(106, 211)
         Me.DateTimePicker_Sunrise.Name = "DateTimePicker_Sunrise"
         Me.DateTimePicker_Sunrise.ShowUpDown = True
         Me.DateTimePicker_Sunrise.Size = New System.Drawing.Size(63, 20)
-        Me.DateTimePicker_Sunrise.TabIndex = 4
+        Me.DateTimePicker_Sunrise.TabIndex = 6
         '
         'DateTimePicker_Sunset
         '
         Me.DateTimePicker_Sunset.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.DateTimePicker_Sunset.Location = New System.Drawing.Point(106, 184)
+        Me.DateTimePicker_Sunset.Location = New System.Drawing.Point(106, 238)
         Me.DateTimePicker_Sunset.Name = "DateTimePicker_Sunset"
         Me.DateTimePicker_Sunset.ShowUpDown = True
         Me.DateTimePicker_Sunset.Size = New System.Drawing.Size(63, 20)
-        Me.DateTimePicker_Sunset.TabIndex = 5
-        '
-        'Button_AlertConfig
-        '
-        Me.Button_AlertConfig.Location = New System.Drawing.Point(495, 236)
-        Me.Button_AlertConfig.Name = "Button_AlertConfig"
-        Me.Button_AlertConfig.Size = New System.Drawing.Size(75, 23)
-        Me.Button_AlertConfig.TabIndex = 7
-        Me.Button_AlertConfig.Text = "Browse"
-        Me.Button_AlertConfig.UseVisualStyleBackColor = True
-        '
-        'Label_alertConfig
-        '
-        Me.Label_alertConfig.AutoSize = True
-        Me.Label_alertConfig.Location = New System.Drawing.Point(4, 241)
-        Me.Label_alertConfig.Name = "Label_alertConfig"
-        Me.Label_alertConfig.Size = New System.Drawing.Size(93, 13)
-        Me.Label_alertConfig.TabIndex = 15
-        Me.Label_alertConfig.Text = "Alert Configuration"
-        '
-        'TextBox_alertConfig
-        '
-        Me.TextBox_alertConfig.Location = New System.Drawing.Point(106, 237)
-        Me.TextBox_alertConfig.Name = "TextBox_alertConfig"
-        Me.TextBox_alertConfig.Size = New System.Drawing.Size(383, 20)
-        Me.TextBox_alertConfig.TabIndex = 6
-        Me.TextBox_alertConfig.Text = "E:\DETech\MetUploader\alert_Config.csv"
+        Me.DateTimePicker_Sunset.TabIndex = 7
         '
         'TextBox_outputFile
         '
         Me.TextBox_outputFile.Location = New System.Drawing.Point(106, 437)
         Me.TextBox_outputFile.Name = "TextBox_outputFile"
         Me.TextBox_outputFile.Size = New System.Drawing.Size(383, 20)
-        Me.TextBox_outputFile.TabIndex = 15
-        Me.TextBox_outputFile.Text = "E:\DETech\MetUploader\test.txt"
+        Me.TextBox_outputFile.TabIndex = 13
         '
         'Button_outputFile
         '
         Me.Button_outputFile.Location = New System.Drawing.Point(495, 437)
         Me.Button_outputFile.Name = "Button_outputFile"
         Me.Button_outputFile.Size = New System.Drawing.Size(75, 23)
-        Me.Button_outputFile.TabIndex = 16
+        Me.Button_outputFile.TabIndex = 14
         Me.Button_outputFile.Text = "Browse"
         Me.Button_outputFile.UseVisualStyleBackColor = True
         '
@@ -238,24 +206,24 @@ Partial Class metBuilder
         Me.Button_Run.Location = New System.Drawing.Point(266, 485)
         Me.Button_Run.Name = "Button_Run"
         Me.Button_Run.Size = New System.Drawing.Size(75, 23)
-        Me.Button_Run.TabIndex = 17
+        Me.Button_Run.TabIndex = 15
         Me.Button_Run.Text = "Run"
         Me.Button_Run.UseVisualStyleBackColor = True
         '
         'NumericUpDown_DaysBefore
         '
-        Me.NumericUpDown_DaysBefore.Location = New System.Drawing.Point(106, 310)
+        Me.NumericUpDown_DaysBefore.Location = New System.Drawing.Point(106, 308)
         Me.NumericUpDown_DaysBefore.Name = "NumericUpDown_DaysBefore"
         Me.NumericUpDown_DaysBefore.Size = New System.Drawing.Size(63, 20)
-        Me.NumericUpDown_DaysBefore.TabIndex = 10
+        Me.NumericUpDown_DaysBefore.TabIndex = 8
         Me.NumericUpDown_DaysBefore.Value = New Decimal(New Integer() {2, 0, 0, 0})
         '
         'NumericUpDown_DaysAfter
         '
-        Me.NumericUpDown_DaysAfter.Location = New System.Drawing.Point(106, 336)
+        Me.NumericUpDown_DaysAfter.Location = New System.Drawing.Point(106, 334)
         Me.NumericUpDown_DaysAfter.Name = "NumericUpDown_DaysAfter"
         Me.NumericUpDown_DaysAfter.Size = New System.Drawing.Size(63, 20)
-        Me.NumericUpDown_DaysAfter.TabIndex = 11
+        Me.NumericUpDown_DaysAfter.TabIndex = 9
         Me.NumericUpDown_DaysAfter.Value = New Decimal(New Integer() {2, 0, 0, 0})
         '
         'NumericUpDown_VariabilityTemp
@@ -264,8 +232,8 @@ Partial Class metBuilder
         Me.NumericUpDown_VariabilityTemp.Minimum = New Decimal(New Integer() {100, 0, 0, -2147483648})
         Me.NumericUpDown_VariabilityTemp.Name = "NumericUpDown_VariabilityTemp"
         Me.NumericUpDown_VariabilityTemp.Size = New System.Drawing.Size(120, 20)
-        Me.NumericUpDown_VariabilityTemp.TabIndex = 12
-        Me.NumericUpDown_VariabilityTemp.Value = New Decimal(New Integer() {3, 0, 0, 0})
+        Me.NumericUpDown_VariabilityTemp.TabIndex = 10
+        Me.NumericUpDown_VariabilityTemp.Value = New Decimal(New Integer() {2, 0, 0, 0})
         '
         'NumericUpDown_VariabilityWindSpeed
         '
@@ -273,7 +241,7 @@ Partial Class metBuilder
         Me.NumericUpDown_VariabilityWindSpeed.Minimum = New Decimal(New Integer() {100, 0, 0, -2147483648})
         Me.NumericUpDown_VariabilityWindSpeed.Name = "NumericUpDown_VariabilityWindSpeed"
         Me.NumericUpDown_VariabilityWindSpeed.Size = New System.Drawing.Size(120, 20)
-        Me.NumericUpDown_VariabilityWindSpeed.TabIndex = 13
+        Me.NumericUpDown_VariabilityWindSpeed.TabIndex = 11
         Me.NumericUpDown_VariabilityWindSpeed.Value = New Decimal(New Integer() {2, 0, 0, 0})
         '
         'NumericUpDown_VariabilityWindDirection
@@ -282,13 +250,13 @@ Partial Class metBuilder
         Me.NumericUpDown_VariabilityWindDirection.Minimum = New Decimal(New Integer() {100, 0, 0, -2147483648})
         Me.NumericUpDown_VariabilityWindDirection.Name = "NumericUpDown_VariabilityWindDirection"
         Me.NumericUpDown_VariabilityWindDirection.Size = New System.Drawing.Size(120, 20)
-        Me.NumericUpDown_VariabilityWindDirection.TabIndex = 14
+        Me.NumericUpDown_VariabilityWindDirection.TabIndex = 12
         Me.NumericUpDown_VariabilityWindDirection.Value = New Decimal(New Integer() {5, 0, 0, 0})
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(-1, 313)
+        Me.Label1.Location = New System.Drawing.Point(-1, 311)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(96, 13)
         Me.Label1.TabIndex = 26
@@ -297,7 +265,7 @@ Partial Class metBuilder
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(10, 340)
+        Me.Label2.Location = New System.Drawing.Point(10, 338)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(87, 13)
         Me.Label2.TabIndex = 26
@@ -342,7 +310,7 @@ Partial Class metBuilder
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(105, 214)
+        Me.Label7.Location = New System.Drawing.Point(105, 268)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(131, 13)
         Me.Label7.TabIndex = 27
@@ -369,9 +337,6 @@ Partial Class metBuilder
         Me.Controls.Add(Me.Label_outputFile)
         Me.Controls.Add(Me.Button_outputFile)
         Me.Controls.Add(Me.TextBox_outputFile)
-        Me.Controls.Add(Me.Button_AlertConfig)
-        Me.Controls.Add(Me.Label_alertConfig)
-        Me.Controls.Add(Me.TextBox_alertConfig)
         Me.Controls.Add(Me.DateTimePicker_Sunset)
         Me.Controls.Add(Me.DateTimePicker_Sunrise)
         Me.Controls.Add(Me.Label_sunset)
@@ -410,9 +375,6 @@ Partial Class metBuilder
     Friend WithEvents Label_sunset As System.Windows.Forms.Label
     Friend WithEvents DateTimePicker_Sunrise As System.Windows.Forms.DateTimePicker
     Friend WithEvents DateTimePicker_Sunset As System.Windows.Forms.DateTimePicker
-    Friend WithEvents Button_AlertConfig As System.Windows.Forms.Button
-    Friend WithEvents Label_alertConfig As System.Windows.Forms.Label
-    Friend WithEvents TextBox_alertConfig As System.Windows.Forms.TextBox
     Friend WithEvents OpenFileDialog_AlertConfig As System.Windows.Forms.OpenFileDialog
     Friend WithEvents SaveFileDialog_outputFile As System.Windows.Forms.SaveFileDialog
     Friend WithEvents TextBox_outputFile As System.Windows.Forms.TextBox
