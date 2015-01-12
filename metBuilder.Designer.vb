@@ -63,19 +63,19 @@ Partial Class metBuilder
         '
         'TextBox_inputFile
         '
-        Me.TextBox_inputFile.Location = New System.Drawing.Point(104, 31)
+        Me.TextBox_inputFile.Location = New System.Drawing.Point(48, 31)
         Me.TextBox_inputFile.Name = "TextBox_inputFile"
-        Me.TextBox_inputFile.Size = New System.Drawing.Size(383, 20)
+        Me.TextBox_inputFile.Size = New System.Drawing.Size(439, 20)
         Me.TextBox_inputFile.TabIndex = 1
         '
         'Label_inputFile
         '
         Me.Label_inputFile.AutoSize = True
-        Me.Label_inputFile.Location = New System.Drawing.Point(45, 34)
+        Me.Label_inputFile.Location = New System.Drawing.Point(45, 9)
         Me.Label_inputFile.Name = "Label_inputFile"
-        Me.Label_inputFile.Size = New System.Drawing.Size(50, 13)
+        Me.Label_inputFile.Size = New System.Drawing.Size(364, 13)
         Me.Label_inputFile.TabIndex = 1
-        Me.Label_inputFile.Text = "Input File"
+        Me.Label_inputFile.Text = "Input Filename (same *.txt used by CHPConvert to create WebPuff met files)"
         '
         'Button_inputFile
         '
@@ -88,24 +88,24 @@ Partial Class metBuilder
         '
         'TextBox_ExerciseName
         '
-        Me.TextBox_ExerciseName.Location = New System.Drawing.Point(106, 75)
+        Me.TextBox_ExerciseName.Location = New System.Drawing.Point(48, 80)
         Me.TextBox_ExerciseName.Name = "TextBox_ExerciseName"
-        Me.TextBox_ExerciseName.Size = New System.Drawing.Size(464, 20)
+        Me.TextBox_ExerciseName.Size = New System.Drawing.Size(520, 20)
         Me.TextBox_ExerciseName.TabIndex = 3
         '
         'Label_ExerciseName
         '
         Me.Label_ExerciseName.AutoSize = True
-        Me.Label_ExerciseName.Location = New System.Drawing.Point(19, 78)
+        Me.Label_ExerciseName.Location = New System.Drawing.Point(45, 64)
         Me.Label_ExerciseName.Name = "Label_ExerciseName"
-        Me.Label_ExerciseName.Size = New System.Drawing.Size(78, 13)
+        Me.Label_ExerciseName.Size = New System.Drawing.Size(292, 13)
         Me.Label_ExerciseName.TabIndex = 4
-        Me.Label_ExerciseName.Text = "Exercise Name"
+        Me.Label_ExerciseName.Text = "Exercise Title and Date (e.g., ""BGCA Nov 21, 2014 CAIRA"")"
         '
         'Label_ForecastSite
         '
         Me.Label_ForecastSite.AutoSize = True
-        Me.Label_ForecastSite.Location = New System.Drawing.Point(28, 120)
+        Me.Label_ForecastSite.Location = New System.Drawing.Point(28, 126)
         Me.Label_ForecastSite.Name = "Label_ForecastSite"
         Me.Label_ForecastSite.Size = New System.Drawing.Size(69, 13)
         Me.Label_ForecastSite.TabIndex = 6
@@ -115,7 +115,7 @@ Partial Class metBuilder
         '
         Me.ComboBox_ForecastSite.FormattingEnabled = True
         Me.ComboBox_ForecastSite.Items.AddRange(New Object() {"Richmond, KY", "Pueblo, CO"})
-        Me.ComboBox_ForecastSite.Location = New System.Drawing.Point(106, 116)
+        Me.ComboBox_ForecastSite.Location = New System.Drawing.Point(106, 122)
         Me.ComboBox_ForecastSite.Name = "ComboBox_ForecastSite"
         Me.ComboBox_ForecastSite.Size = New System.Drawing.Size(464, 21)
         Me.ComboBox_ForecastSite.TabIndex = 4
@@ -166,6 +166,7 @@ Partial Class metBuilder
         Me.DateTimePicker_Sunrise.ShowUpDown = True
         Me.DateTimePicker_Sunrise.Size = New System.Drawing.Size(63, 20)
         Me.DateTimePicker_Sunrise.TabIndex = 6
+        Me.DateTimePicker_Sunrise.Value = New Date(2015, 1, 12, 7, 0, 0, 0)
         '
         'DateTimePicker_Sunset
         '
@@ -175,17 +176,18 @@ Partial Class metBuilder
         Me.DateTimePicker_Sunset.ShowUpDown = True
         Me.DateTimePicker_Sunset.Size = New System.Drawing.Size(63, 20)
         Me.DateTimePicker_Sunset.TabIndex = 7
+        Me.DateTimePicker_Sunset.Value = New Date(2015, 1, 12, 18, 30, 0, 0)
         '
         'TextBox_outputFile
         '
-        Me.TextBox_outputFile.Location = New System.Drawing.Point(106, 437)
+        Me.TextBox_outputFile.Location = New System.Drawing.Point(106, 441)
         Me.TextBox_outputFile.Name = "TextBox_outputFile"
         Me.TextBox_outputFile.Size = New System.Drawing.Size(383, 20)
         Me.TextBox_outputFile.TabIndex = 13
         '
         'Button_outputFile
         '
-        Me.Button_outputFile.Location = New System.Drawing.Point(495, 437)
+        Me.Button_outputFile.Location = New System.Drawing.Point(495, 441)
         Me.Button_outputFile.Name = "Button_outputFile"
         Me.Button_outputFile.Size = New System.Drawing.Size(75, 23)
         Me.Button_outputFile.TabIndex = 14
@@ -195,7 +197,7 @@ Partial Class metBuilder
         'Label_outputFile
         '
         Me.Label_outputFile.AutoSize = True
-        Me.Label_outputFile.Location = New System.Drawing.Point(39, 440)
+        Me.Label_outputFile.Location = New System.Drawing.Point(39, 444)
         Me.Label_outputFile.Name = "Label_outputFile"
         Me.Label_outputFile.Size = New System.Drawing.Size(58, 13)
         Me.Label_outputFile.TabIndex = 19
@@ -212,7 +214,7 @@ Partial Class metBuilder
         '
         'NumericUpDown_DaysBefore
         '
-        Me.NumericUpDown_DaysBefore.Location = New System.Drawing.Point(106, 308)
+        Me.NumericUpDown_DaysBefore.Location = New System.Drawing.Point(106, 301)
         Me.NumericUpDown_DaysBefore.Name = "NumericUpDown_DaysBefore"
         Me.NumericUpDown_DaysBefore.Size = New System.Drawing.Size(63, 20)
         Me.NumericUpDown_DaysBefore.TabIndex = 8
@@ -220,7 +222,7 @@ Partial Class metBuilder
         '
         'NumericUpDown_DaysAfter
         '
-        Me.NumericUpDown_DaysAfter.Location = New System.Drawing.Point(106, 334)
+        Me.NumericUpDown_DaysAfter.Location = New System.Drawing.Point(106, 344)
         Me.NumericUpDown_DaysAfter.Name = "NumericUpDown_DaysAfter"
         Me.NumericUpDown_DaysAfter.Size = New System.Drawing.Size(63, 20)
         Me.NumericUpDown_DaysAfter.TabIndex = 9
@@ -228,7 +230,7 @@ Partial Class metBuilder
         '
         'NumericUpDown_VariabilityTemp
         '
-        Me.NumericUpDown_VariabilityTemp.Location = New System.Drawing.Point(106, 390)
+        Me.NumericUpDown_VariabilityTemp.Location = New System.Drawing.Point(106, 399)
         Me.NumericUpDown_VariabilityTemp.Minimum = New Decimal(New Integer() {100, 0, 0, -2147483648})
         Me.NumericUpDown_VariabilityTemp.Name = "NumericUpDown_VariabilityTemp"
         Me.NumericUpDown_VariabilityTemp.Size = New System.Drawing.Size(120, 20)
@@ -237,7 +239,7 @@ Partial Class metBuilder
         '
         'NumericUpDown_VariabilityWindSpeed
         '
-        Me.NumericUpDown_VariabilityWindSpeed.Location = New System.Drawing.Point(236, 390)
+        Me.NumericUpDown_VariabilityWindSpeed.Location = New System.Drawing.Point(236, 399)
         Me.NumericUpDown_VariabilityWindSpeed.Minimum = New Decimal(New Integer() {100, 0, 0, -2147483648})
         Me.NumericUpDown_VariabilityWindSpeed.Name = "NumericUpDown_VariabilityWindSpeed"
         Me.NumericUpDown_VariabilityWindSpeed.Size = New System.Drawing.Size(120, 20)
@@ -246,7 +248,7 @@ Partial Class metBuilder
         '
         'NumericUpDown_VariabilityWindDirection
         '
-        Me.NumericUpDown_VariabilityWindDirection.Location = New System.Drawing.Point(367, 390)
+        Me.NumericUpDown_VariabilityWindDirection.Location = New System.Drawing.Point(367, 399)
         Me.NumericUpDown_VariabilityWindDirection.Minimum = New Decimal(New Integer() {100, 0, 0, -2147483648})
         Me.NumericUpDown_VariabilityWindDirection.Name = "NumericUpDown_VariabilityWindDirection"
         Me.NumericUpDown_VariabilityWindDirection.Size = New System.Drawing.Size(120, 20)
@@ -256,25 +258,25 @@ Partial Class metBuilder
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(-1, 311)
+        Me.Label1.Location = New System.Drawing.Point(9, 286)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(96, 13)
+        Me.Label1.Size = New System.Drawing.Size(177, 13)
         Me.Label1.TabIndex = 26
-        Me.Label1.Text = "Days Before Event"
+        Me.Label1.Text = "Days of Simulated met Before Event"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(10, 338)
+        Me.Label2.Location = New System.Drawing.Point(9, 328)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(87, 13)
+        Me.Label2.Size = New System.Drawing.Size(168, 13)
         Me.Label2.TabIndex = 26
-        Me.Label2.Text = "Days After Event"
+        Me.Label2.Text = "Days of Simulated met After Event"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(21, 393)
+        Me.Label3.Location = New System.Drawing.Point(21, 402)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(74, 13)
         Me.Label3.TabIndex = 26
@@ -283,7 +285,7 @@ Partial Class metBuilder
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(131, 374)
+        Me.Label4.Location = New System.Drawing.Point(131, 383)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(82, 13)
         Me.Label4.TabIndex = 26
@@ -292,7 +294,7 @@ Partial Class metBuilder
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(249, 374)
+        Me.Label5.Location = New System.Drawing.Point(249, 383)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(99, 13)
         Me.Label5.TabIndex = 26
@@ -301,7 +303,7 @@ Partial Class metBuilder
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(374, 374)
+        Me.Label6.Location = New System.Drawing.Point(374, 383)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(106, 13)
         Me.Label6.TabIndex = 26
@@ -310,7 +312,7 @@ Partial Class metBuilder
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(105, 268)
+        Me.Label7.Location = New System.Drawing.Point(185, 231)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(131, 13)
         Me.Label7.TabIndex = 27

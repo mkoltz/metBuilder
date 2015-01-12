@@ -219,6 +219,7 @@ Public Class metBuilder
         For c As Integer = (NumericUpDown_DaysBefore.Value * -1) To (NumericUpDown_DaysAfter.Value)
             If c = 0 Then
                 writer.WriteLine("#Exercise Day")
+                writer.WriteLine("# Date/Time   CloudCover    Air-Temp(F)    WindDir(degrees)     WindSpeed(mph)")
                 Dim tempCounter As Byte = 0
                 'build excercise day met
                 While Not nextDay
@@ -293,6 +294,7 @@ Public Class metBuilder
             Else
                 'build before and after excercise day met
                 writer.WriteLine("#Exercise Day " & c)
+                writer.WriteLine("# Date/Time   CloudCover    Air-Temp(F)    WindDir(degrees)     WindSpeed(mph)")
                 While Not nextDay
                     averageTemp(1) = getRandom(averageTemp(0), NumericUpDown_VariabilityTemp.Value)
                     averageWindDirection(1) = getRandom(averageWindDirection(0), NumericUpDown_VariabilityWindDirection.Value)
